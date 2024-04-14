@@ -1,0 +1,62 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import HorizontalCard from "../components/HorizontalCard.astro";
+import { getCollection } from "astro:content";
+import createSlug from "../lib/createSlug"
+
+const posts = (await getCollection("blog")).sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const last_posts = posts.slice(0, 3);
+---
+
+<BaseLayout sideBarActiveItemID="home">
+  <div class="pb-7 mt-5">
+    <div class="text-xl py-1">Archivo académico de</div>
+    <div class="text-5xl font-bold">Juan Bautista Fuentes Ortega</div>
+    <div class="text-3xl py-3 font-bold">Catedrático de Antropología Filosófica</div>
+    <div class="py-2">
+      <text class="text-lg">
+        Una pequeña <b>descripción</b> de lo que pretende ser este archivo en un primer momento.
+      </text>
+    </div>
+  </div>
+
+  <text class="text-lg">
+    <p>
+      Párrafo uno de comentario.
+    </p>
+    <p>
+      Párrafo dos en el que comentamos más cosas.
+    </p>
+    <p>
+      Y ahora recomendamos el Parerga 1.
+    </p>
+  </text>
+
+  <HorizontalCard
+    title="Una Nota sobre el significado del surgimiento de la Antropología filosófica en relación con la crisis antropológica contemporánea de la civilización occidental."
+    img="/post_img.webp"
+    desc="Artículo publicado en la Revista Parerga, 2019."
+    badge="Innovador"
+    url="https://mega.nz/file/8ANXRSDD#G5yMwuxXQ9fBx7AHuBI6hC1SeO_px3KRdx4jPlsm4Co"
+    tags={['Artículo académico','Parerga','Tercera posición']}
+  />
+
+  <text class="text-lg">
+    Y ahora la recomendación para el Parerga 2.
+  </text>
+
+  <HorizontalCard
+    title="Las raíces antropológicas de la agonía de Occidente"
+    img="/post_img.webp"
+    desc="Artículo publicado en la Revista Parerga, 2020."
+    url="https://mega.nz/file/AEshhYrK#lUpzNS9AUm4xzGynGvQP6IITkuVM3vbXtJytAPBZm5c"
+  />
+
+  <text class="text-lg">
+    <p>También podemos considerar un formato más discreto.</p>
+    <p style="text-align: justify;"><em><em><a href="https://mega.nz/file/8ANXRSDD#G5yMwuxXQ9fBx7AHuBI6hC1SeO_px3KRdx4jPlsm4Co">(2019) Una Nota sobre el significado del surgimiento de la Antropología filosófica en relación con la crisis antropológica contemporánea de la civilización occidental</a>
+    </em></em></p>
+  </text>
+
+</BaseLayout>
